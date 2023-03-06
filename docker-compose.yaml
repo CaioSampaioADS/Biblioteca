@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: biblioteca
+    volumes:
+      - ./dbdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks: 
+      net:
+
+
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    networks: 
+     net:
+
+
+networks: 
+  net:
+    driver: bridge      
+  
